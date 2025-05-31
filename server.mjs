@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './db/conn.mjs';
 import globalErr from './middleware/globalErr.mjs';
 import morgan from 'morgan';
+import Site from './routes/siteRoute.mjs'
 
 
 
