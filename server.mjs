@@ -4,12 +4,11 @@ import cors from 'cors';
 import connectDB from './db/conn.mjs';
 import globalErr from './middleware/globalErr.mjs';
 import morgan from 'morgan';
-import Site from './routes/siteRoute.mjs'
+import siteRoute from './routes/siteRoute.mjs'
 
 
-
-connectDB()
 dotenv.config();
+connectDB()
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -21,7 +20,7 @@ app.use(express.json());
 
 
 // Routes
-
+app.use('/api/sites', siteRoute);
 
 // err Middleware
 app.use(globalErr)
