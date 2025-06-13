@@ -22,6 +22,10 @@ router.get('/', async (req, res) => {
   try {
     const { zip, page = 1, limit = 10 } = req.query;
 
+    if (zip && !/^\d{5}$/.test(zip)) {
+      return res.status(400).json({ error: 'Invalid ZIP code format' });
+    }
+
     const query = zip ? { zip } : {};
 
     const sites = await Site.find(query)
@@ -40,6 +44,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Server error while retrieving sites.' });
   }
 });
+
 
 // Gets site info by id
 
